@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import axios from "axios";
-import PORT from "../ENV";
+import {PORT, localhost} from "../ENV";
 import { Row, Divider, Radio, Button, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./Navbar";
@@ -15,7 +15,7 @@ function Template() {
     setRadioVaue(e.target.value);
   };
   const getDocs = async () => {
-    const response = await axios.get(`http://localhost:${PORT}/getDocs`);
+    const response = await axios.get(`http://${localhost}:${PORT}/getDocs`);
     console.log(response);
     setDocs(response.data);
   };
@@ -55,12 +55,12 @@ function Template() {
             <Space direction="vertical">
               {docs.map((doc, index) => (
                 <Radio key={index} value={doc.templateTitle} className="mb-3">
-                  <img
+                  {/*<img
                     src={doc.fileName}
                     height="100px"
                     width="100px"
                     alt="img"
-                  />
+                  />*/}
                   <span className="mx-4">
                     <b>{doc.templateTitle}</b>
                   </span>

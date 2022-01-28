@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import PORT from '.././../ENV';
+import {PORT, localhost} from '.././../ENV';
 import { Form, Input, Button, Upload, Alert } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
@@ -36,7 +36,7 @@ function TemplateSelection() {
         var templateData = new FormData();
         templateData.append('templateTitle', values.templateTitle);
         templateData.append('fileName', cloudResponse.data.url);
-        const uploadResp = await axios.post(`http://localhost:${PORT}/uploadfile`,  templateData);
+        const uploadResp = await axios.post(`http://${localhost}:${PORT}/uploadfile`,  templateData);
         console.log(uploadResp.data);
         if(uploadResp.status === 200){
           form.resetFields();

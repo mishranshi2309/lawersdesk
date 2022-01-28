@@ -5,13 +5,13 @@ import LoginImg from '../../assets/login.jpg';
 import { Form, Input, Button, Divider  } from "antd";
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import PORT from '../../ENV';
+import {PORT, localhost} from '../../ENV';
 
 function Login() {
   const navigate = useNavigate();
   const onFinish = (values) => {
     console.log("Success:", values);
-    axios.post(`http://localhost:${PORT}/login`, values).then((res)=>{
+    axios.post(`http://${localhost}:${PORT}/login`, values).then((res)=>{
       console.log(res.data);
       if(res.data.msg === "successful"){
         localStorage.setItem('affidUser', values.username);

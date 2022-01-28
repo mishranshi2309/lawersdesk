@@ -1,20 +1,25 @@
 import React, { useRef } from "react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import {useReactToPrint} from 'react-to-print';
 
 function AffidavitForMarriage() {
   const inputRef = useRef(null);
-  const generatePdf = () =>{
-    console.log("Generating");
-    html2canvas(inputRef.current).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF();
-      var width = pdf.internal.pageSize.getWidth();
-      var height = pdf.internal.pageSize.getHeight();
-      pdf.addImage(imgData, "JPEG", 0, 0 , width, height);
-      pdf.save("affidavit.pdf");
-    });
-  }
+  const handlePrint = useReactToPrint({
+    content: () => inputRef.current,
+  });
+  console.log(handlePrint)
+  // const generatePdf = () =>{
+  //   console.log("Generating");
+  //   html2canvas(inputRef.current).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF();
+  //     var width = pdf.internal.pageSize.getWidth();
+  //     var height = pdf.internal.pageSize.getHeight();
+  //     pdf.addImage(imgData, "JPEG", 0, 0 , width, height);
+  //     pdf.save("affidavit.pdf");
+  //   });
+  // }
  
   return (
     <div>
@@ -54,7 +59,7 @@ function AffidavitForMarriage() {
       Counsel for the deponent Note.—Affidavit to be attested by the appropriate
       authority prescribed under law.</div>
     </div>
-    <button className="btn btn-primary" onClick={generatePdf}>Confirm & Download</button>
+    <button className="btn btn-primary" onClick={handlePrint}>Confirm & Download</button>
     </div>
   );
 }

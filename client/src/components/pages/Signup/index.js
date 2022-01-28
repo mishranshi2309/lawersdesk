@@ -4,14 +4,14 @@ import {Link} from "react-router-dom";
 import LoginImg from '../../assets/login.jpg';
 import { Form, Input, Button, Divider  } from "antd";
 import axios from 'axios';
-import PORT from '../../ENV';
+import {PORT, localhost} from '../../ENV';
 import {useNavigate} from 'react-router-dom';
 
 function Signup() {
   const navigate = useNavigate();
     const onFinish = (values) => {
         console.log("Success:", values);
-        axios.post(`http://localhost:${PORT}/signup`, values)
+        axios.post(`http://${localhost}:${PORT}/signup`, values)
         .then(res=> {
           console.log(res);
           if(res.data.msg === 'successful'){

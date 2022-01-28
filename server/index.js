@@ -11,7 +11,9 @@ app.use(cors());
 const Reg = require("./models/registration");
 //mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/Affid", {
+
+const uri = "mongodb+srv://Mishranshi:anshika@cluster0.e7oko.mongodb.net/Affid?retryWrites=true&w=majority"
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
