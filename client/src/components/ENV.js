@@ -1,2 +1,2 @@
 export const PORT =  5003;
-export const localhost ="172.31.34.106";
+export const localhost ="3.110.195.59";
